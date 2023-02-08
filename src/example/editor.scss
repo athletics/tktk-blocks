@@ -1,0 +1,16 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-tktk-blocks-example {
+  @apply py-20;
+  max-width: 100% !important;
+
+  > * {
+    @apply max-w-[1440px] mx-auto;
+  }
+
+  .title {
+    @apply heading-h1;
+  }
+}
