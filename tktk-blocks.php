@@ -19,18 +19,11 @@ function tktk_blocks_init() {
 
 	$blocks = array(
 		'example',
-	);
-
-	$dynamic_blocks = array(
 		'post-list',
 	);
 
 	foreach ( $blocks as $block ) {
 		register_block_type( __DIR__ . '/build/blocks/' . $block );
-	}
-
-	foreach ( $dynamic_blocks as $block ) {
-		include __DIR__ . '/src/blocks/' . $block . '/index.php';
 	}
 
 	add_filter( 'block_categories_all' , function( $categories ) {
