@@ -8,15 +8,15 @@
 	"attributes": {
 		"title": {
 			"type": "string",
-			"default": ""
-		},
-		"showSpecialMessage": {
-			"type": "boolean",
-			"default": false
+			"default": "Hello world!"
 		}
 	},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"background": true,
+			"text": false
+		}
 	},
 	"textdomain": "tktk-blocks",
 	"editorScript": "file:./index.js",

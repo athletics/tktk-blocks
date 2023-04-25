@@ -29,6 +29,8 @@ const PostSelector = ({
 	saveData = () => {},
 	saveReorder = () => {},
 	handleRemove = () => {},
+	max = 0,
+	min = 0,
 	queryArgs = {},
 }) => {
 	const [search, setSearch] = useState("");
@@ -48,6 +50,7 @@ const PostSelector = ({
 					DEFAULT_POST_TYPE,
 					{
 						...queryArgs,
+						per_page: -1,
 					}
 				);
 				const postTypes = select("core").getPostTypes({
@@ -62,6 +65,7 @@ const PostSelector = ({
 			return {
 				posts: select("core").getEntityRecords("postType", selectedPostType, {
 					...queryArgs,
+					per_page: -1,
 				}),
 				postTypes: select("core").getPostTypes({
 					per_page: -1,
@@ -130,10 +134,17 @@ const PostSelector = ({
 						onClick={() => {
 							if (isSelected) return;
 							setScrollPosition(scrollRef.current.scrollTop);
+							if (max > 0 && selectedPosts.length >= max) {
+								alert(
+									"You have reached the maximum number of items allowed for this field. Please remove an item before adding another."
+								);
+								return;
+							}
+							console.log(post);
 							saveData(post);
 						}}
 					>
-						{title.rendered}
+						{title.rendered || "(No title)"}
 					</Tag>
 				);
 			});
@@ -148,22 +159,31 @@ const PostSelector = ({
 						placeholder="Search"
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
+						style={{
+							border: 0,
+							borderRadius: 0,
+						}}
 					/>
 					{postTypes && (
-						<PostTypeSelect
-							value={selectedPostType}
-							onChange={(item) => {
-								setSelectedPostType(item);
-							}}
-						>
-							{postTypes
-								.filter((type) => !EXCLUDED_POST_TYPES.includes(type.slug))
-								.map((type) => (
-									<option key={type.slug} value={type.slug}>
-										{type.labels.singular_name}
-									</option>
-								))}
-						</PostTypeSelect>
+						<div className="custom-select">
+							<PostTypeSelect
+								value={selectedPostType}
+								onChange={(item) => {
+									setSelectedPostType(item);
+								}}
+								style={{
+									borderRadius: 0,
+								}}
+							>
+								{postTypes
+									.filter((type) => !EXCLUDED_POST_TYPES.includes(type.slug))
+									.map((type) => (
+										<option key={type.slug} value={type.slug}>
+											{type.labels.singular_name}
+										</option>
+									))}
+							</PostTypeSelect>
+						</div>
 					)}
 				</FilterGrid>
 				<PostsGrid>

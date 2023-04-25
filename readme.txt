@@ -1,5 +1,5 @@
 === Example Static ===
-Contributors:      Britton Walker
+Contributors:      The WordPress Contributors
 Tags:              block
 Tested up to:      6.0
 Stable tag:        0.1.0
