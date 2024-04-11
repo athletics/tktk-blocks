@@ -17,13 +17,11 @@ function tktk_blocks_init() {
 
 	define('TKTK_BLOCKS_BUILD', plugin_dir_path( __FILE__ ) . 'build/blocks/');
 
-	$blocks = array(
-		'example',
-		'post-list',
-	);
+	$blocks = array_filter(glob(TKTK_BLOCKS_BUILD . '*'), 'is_dir');
 
 	foreach ( $blocks as $block ) {
-		register_block_type( __DIR__ . '/build/blocks/' . $block );
+		$block_name = str_replace(TKTK_BLOCKS_BUILD, '', $block);
+		register_block_type( __DIR__ . '/build/blocks/' . $block_name );
 	}
 
 	add_filter( 'block_categories_all' , function( $categories ) {
