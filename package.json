@@ -17,8 +17,8 @@
 	},
 	"devDependencies": {
 		"@svgr/webpack": "^6.5.1",
-		"@wordpress/create-block": "^4.15.0",
-		"@wordpress/scripts": "^26.2.0",
+		"@wordpress/create-block": "^4.39.0",
+		"@wordpress/scripts": "^27.6.0",
 		"autoprefixer": "^10.4.13",
 		"classnames": "^2.3.2",
 		"postcss": "^8.4.21",
@@ -27,8 +27,8 @@
 		"url-loader": "^4.1.1"
 	},
 	"dependencies": {
-		"@wordpress/icons": "^9.22.0",
-		"@wordpress/server-side-render": "^4.8.0",
+		"@wordpress/icons": "^9.46.0",
+		"@wordpress/server-side-render": "^4.32.0",
 		"react-beautiful-dnd": "^13.1.1",
 		"react-fast-marquee": "^1.3.5",
 		"tailwind-styled-components": "^2.2.0"
