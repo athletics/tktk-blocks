@@ -37,7 +37,12 @@ function tktk_blocks_init() {
 
 	// Enqueue editor stylesheet
 	add_action( 'enqueue_block_editor_assets', function() {
-		wp_enqueue_style( 'tktk-blocks-editor', plugins_url( 'build/tktkStyles.css', __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) . 'build/tktkStyles.css' ) );
+		wp_enqueue_style( 'tktk-blocks-editor', plugins_url( 'build/tktk-block-styles.css', __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) . 'build/tktk-block-styles.css' ) );
+	});
+
+	add_action( 'enqueue_block_assets', function() {
+		$assets = include( plugin_dir_path( __FILE__ ) . 'build/tktk-blocks-plugins.asset.php' );
+		wp_enqueue_script( 'tktk-blocks-plugins', plugins_url( 'build/tktk-blocks-plugins.js', __FILE__ ), $assets['dependencies'], $assets['version'] );
 	});
 }
 
